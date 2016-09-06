@@ -15,7 +15,7 @@ public class DeparturesScanner {
 	private static final String	sLiveFolder		= "./live/";
 	private static final String	sArchFolder		= "./arch";
 	private Lock			mLock			= new ReentrantLock();
-	private String[]		mStationsToScan;
+	private String[]                mStationsToScan;
 
 	public DeparturesScanner(String... iStationsToScan) {
 		mStationsToScan = new String[iStationsToScan.length];
