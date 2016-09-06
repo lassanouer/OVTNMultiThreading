@@ -11,7 +11,7 @@ import org.apache.commons.io.FileUtils;
 
 public class DeparturesScanner {
 	private static boolean		sCancel			= false;
-	private static final int	sMaxFolderSize	        = 500;
+	private static final int        sMaxFolderSize	        = 500;
 	private static final String	sLiveFolder		= "./live/";
 	private static final String	sArchFolder		= "./arch";
 	private Lock			mLock			= new ReentrantLock();
