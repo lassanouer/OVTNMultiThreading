@@ -11,11 +11,11 @@ import org.apache.commons.io.FileUtils;
 
 public class DeparturesScanner {
 	private static boolean		sCancel			= false;
-	private static final int	sMaxFolderSize	= 500;
+	private static final int	sMaxFolderSize	        = 500;
 	private static final String	sLiveFolder		= "./live/";
 	private static final String	sArchFolder		= "./arch";
-	private Lock				mLock			= new ReentrantLock();
-	private String[]			mStationsToScan;
+	private Lock			mLock			= new ReentrantLock();
+	private String[]		mStationsToScan;
 
 	public DeparturesScanner(String... iStationsToScan) {
 		mStationsToScan = new String[iStationsToScan.length];
@@ -27,8 +27,8 @@ public class DeparturesScanner {
 	}
 
 	/**
-	 * Démarre l'aspiration des données ainsi que le thread de gestion des
-	 * répertoires.
+	 * DÃ©marre l'aspiration des donnÃ©es ainsi que le thread de gestion des
+	 * rÃ©pertoires.
 	 */
 	public void start() {
 		for (String tmpStation : mStationsToScan) {
@@ -39,7 +39,7 @@ public class DeparturesScanner {
 	}
 
 	/**
-	 * Créer un thread qui va aspirer les données pour la station fournie et les
+	 * CrÃ©er un thread qui va aspirer les donnÃ©es pour la station fournie et les
 	 * stocker dans le folder live.
 	 * 
 	 * @param iStation
@@ -72,8 +72,8 @@ public class DeparturesScanner {
 	}
 
 	/**
-	 * Démarre un daemon qui va périodiquement scruter le folder live et le
-	 * déplacer s'il devient trop gros.
+	 * DÃ©marre un daemon qui va pÃ©riodiquement scruter le folder live et le
+	 * dÃ©placer s'il devient trop gros.
 	 */
 	private void startDaemonThread() {
 		Thread lDaemonThread = new Thread(new Runnable() {
@@ -84,7 +84,7 @@ public class DeparturesScanner {
 					if (lLiveFolder.length() > sMaxFolderSize) {
 						mLock.lock();
 						File lArchFolder = new File(sArchFolder + new SimpleDateFormat("yyyyMMddhhmm'.txt'").format(new Date()));
-						System.out.println("La taille de fichier " + sLiveFolder + "a dépassé le max");
+						System.out.println("La taille de fichier " + sLiveFolder + "a dÃ©passÃ© le max");
 						try {
 							FileUtils.copyFile(lLiveFolder, lArchFolder);
 							FileUtils.deleteDirectory(lLiveFolder);
@@ -95,7 +95,7 @@ public class DeparturesScanner {
 							mLock.unlock();
 						}
 						try {
-							// 5 minutes pour redémarer
+							// 5 minutes pour redÃ©marer
 							Thread.sleep(300000);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
